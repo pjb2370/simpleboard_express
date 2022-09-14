@@ -33,6 +33,15 @@ app.post("/api/insert", (req, res) => {
   });
 });
 
+app.post("/api/delete", (req, res) => {
+  const idx = req.body.title;
+
+  const sqlQuery = "DELETE FROM simpleboard WHERE idx=(?)";
+  db.query(sqlQuery, [idx], (err, result) => {
+    res.send(result);
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`running on port ${PORT}`);
 });
